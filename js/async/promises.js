@@ -37,6 +37,7 @@ for (let i = 0; i < 10; i++) {
 
 let requestDone = false;
 fetch(
+	//"https://www.bouvet.no/finnesikke"
 	"https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc&per_page=10"
 )
 	.then((response) => response.json())
