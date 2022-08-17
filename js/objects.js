@@ -42,7 +42,7 @@ const complexACopy = { ...complexA };
 console.log(deepEquals(complexA, complexACopy)); // true
 
 complexA.prop2.innerProp1 = "modified!";
-console.log(deepEquals(complexA, complexACopy)); // true!
+console.log(deepEquals(complexA, complexACopy)); // true! - prop2 is the same reference for both complexA and complexACopy (shallow copy)
 
 //Assumes only primitives and objects as values
 function deepCopy(value) {
