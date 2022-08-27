@@ -1,2 +1,3 @@
-# frontend-skolen
-Kodeeksempler for frontend-skolen
+# frontendskolen-javascript
+
+Kodeeksempler for JavaScript-modulen i frontendskolen
