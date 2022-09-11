@@ -2,7 +2,7 @@ const myPromise = new Promise((resolve) => {
 	resolve("resolved!");
 });
 
-myPromise.then((result) => console.log(result));
+myPromise.then((result) => console.log(result)); // resolved!
 
 function doSomethingAsync() {
 	return new Promise((resolve) => {
@@ -12,7 +12,7 @@ function doSomethingAsync() {
 	});
 }
 
-doSomethingAsync().then((result) => console.log(result));
+doSomethingAsync().then((result) => console.log(result)); // "resolved some async stuff!" (after about 300 ms)
 
 function getUnreliablePromise() {
 	return new Promise((resolve, reject) => {
@@ -32,12 +32,11 @@ for (let i = 0; i < 10; i++) {
 	getUnreliablePromise()
 		.then((result) => console.log(result))
 		.catch((error) => console.log(error))
-		.finally(() => console.log(`Finally, we are done`));
+		.finally(() => console.log(`Finally, we are done with this promise!`));
 }
 
 let requestDone = false;
 fetch(
-	//"https://www.bouvet.no/finnesikke"
 	"https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc&per_page=10"
 )
 	.then((response) => response.json())

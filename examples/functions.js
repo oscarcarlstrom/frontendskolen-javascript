@@ -3,7 +3,7 @@ function sayHello() {
 	console.log("Hello!");
 }
 
-//Anonym
+//Anonymous
 const sayHey = function () {
 	console.log("Hey!");
 };
@@ -30,3 +30,11 @@ const getImpureGreatingPhrase = (name) => {
 	greeting += ` ${name}`;
 	return greeting;
 };
+
+// Constructor function
+function Person(firstName, lastName) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+}
+
+const p = new Person("Oscar", "Carlström");

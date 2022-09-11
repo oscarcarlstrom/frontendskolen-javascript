@@ -29,7 +29,9 @@ form.addEventListener("submit", (event) => {
 	label.appendChild(document.createElement("span"));
 	label.classList.add("toggle-switch");
 	label.addEventListener("click", (e) => {
-		e.stopPropagation(); // Beware the event "bubbling"! -> not it has to be a click event, change won't work!
+		// Beware the event "bubbling"! -> note that it has to be a click event, change won't work!
+		// Also notice that with out this we get the alert from the newRow event listener twice, due to the event bubbling
+		e.stopPropagation();
 		console.log(
 			`${nameInput.value} was ${e.target.checked ? "enabled" : "disabled"}`
 		);

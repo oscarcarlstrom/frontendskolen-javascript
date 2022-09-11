@@ -6,16 +6,16 @@ function doSomethingAsync() {
 	});
 }
 
-const resolved = doSomethingAsync(); // SyntaxError: await is only valid in async functions and the top level bodies of modules
-// const resolved = await doSomethingAsync(); // SyntaxError: await is only valid in async functions and the top level bodies of modules
-console.log(resolved);
+const resolved = doSomethingAsync();
+// const resolved = await doSomethingAsync(); // SyntaxError: await is only valid in async functions and the top level bodies of modules - top level await will be great 🙌
+console.log(resolved); // Promise { <pending> }
 
 async function runAsync() {
 	const resolved = await doSomethingAsync();
 	console.log(resolved);
 }
 
-runAsync();
+runAsync(); // resolved some async stuff!
 
 function getVeryUnreliablePromise() {
 	return new Promise((resolve, reject) => {
@@ -51,17 +51,6 @@ function getVeryUnreliablePromise() {
 		response = exception;
 	} finally {
 		requestDone = true;
-	}
-	console.log(response);
-})();
-
-(async function fetch404() {
-	let response;
-	try {
-		response = await fetch("https://www.bouvet.no/finnesikke");
-	} catch (exception) {
-		console.log("An error occurred!");
-		response = exception;
 	}
 	console.log(response);
 })();

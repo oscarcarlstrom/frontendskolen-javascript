@@ -7,47 +7,49 @@ const theOtherHobbitNames = names.filter((name) => name !== "Frodo");
 console.log(`And his friends ${theOtherHobbitNames.join(", ")}`);
 
 console.log("\nAnd they live in the shire, the land of the hobbits");
-const shireFolks = names.map((name) => ({ name: name, species: "Hobbit" }));
-console.log(shireFolks); // [{ name: "Frodo", species: "Hobbit" }, name: "Sam", species: "Hobbit", ...]
+const shireFolks = names.map((name) => ({ name: name, people: "Hobbit" }));
+console.log(shireFolks); // [{ name: "Frodo", people: "Hobbit" }, name: "Sam", people: "Hobbit", ...]
 
 console.log("\nSo they are all hobbits then?");
-const areTheyAllHobbits = shireFolks.every(
-	({ species }) => species === "Hobbit"
-);
+const areTheyAllHobbits = shireFolks.every(({ people }) => people === "Hobbit");
 console.log(
 	areTheyAllHobbits ? "- Yeah, that is correct!" : "Nope, not all of them"
 );
 
 const aragorn = {
 	name: "Aragorn",
-	species: "Human",
+	people: "Human",
 	weapons: ["Sword", "Dagger", "Bow"],
 };
 console.log(
-	`\nAnyway, they are joined by a ${aragorn.species} named ${aragorn.name}`
+	`\nAnyway, they are joined by a ${aragorn.people} named ${aragorn.name}`
 );
 const hobbitsAndAragorn = [...shireFolks, aragorn];
-console.log("And he gives them some weapons:");
+console.log(hobbitsAndAragorn);
+console.log(shireFolks);
+
+console.log("\nAnd he gives them some weapons:");
 shireFolks.forEach((hobbit) => {
 	hobbit.weapons = ["Short Sword"];
 	console.log(`${hobbit.name} gets ${hobbit.weapons}`);
 });
 
-// shireFolks.push(aragorn); //OBS!
-// console.log(shireFolks);
+shireFolks.push(aragorn); //OBS - this mutates the original array!
+console.log(shireFolks);
 
-console.log("\nThey meet some more guys at a concil...");
+console.log("\nThey meet some more guys at a council...");
 const theOtherdudesFromTheCouncil = [
-	{ name: "Gandalf", species: "Wizard", weapons: ["Sword", "Staf"] },
-	{ name: "Legolas", species: "Elf", weapons: ["Bow", "Dagger", "Dagger"] },
-	{ name: "Gimli", species: "Dwarf", weapons: ["Axe"] },
-	{ name: "Boromir", species: "Human", weapons: ["Sword", "Shield", "Bow"] },
+	{ name: "Gandalf", people: "Wizard", weapons: ["Sword", "Staff"] },
+	{ name: "Legolas", people: "Elf", weapons: ["Bow", "Dagger", "Dagger"] },
+	{ name: "Gimli", people: "Dwarf", weapons: ["Axe"] },
+	{ name: "Boromir", people: "Human", weapons: ["Sword", "Shield", "Bow"] },
 ];
 
-console.log("\nAnd together they form The Fellowship of the Ring");
+console.log(`\nAnd together they form "The Fellowship of the Ring":`);
 const fellowshipOfTheRing = hobbitsAndAragorn.concat(
 	theOtherdudesFromTheCouncil
 );
+console.log(fellowshipOfTheRing);
 
 //Loops
 console.log("\nWho is in the fellowship?");
@@ -56,52 +58,58 @@ for (let i = 0; i < fellowshipOfTheRing.length; i++) {
 	console.log(`- ${fellowshipOfTheRing[i].name}`);
 }
 
-console.log("\nRight, and the elfs?");
+console.log("\nRight, and which of them are the elfs?");
 for (let fellowKey in fellowshipOfTheRing) {
-	if (fellowshipOfTheRing[fellowKey].species === "Elf")
+	if (fellowshipOfTheRing[fellowKey].people === "Elf")
 		console.log(`- ${fellowshipOfTheRing[fellowKey].name}`);
 }
-// for (let fellow in fellowshipOfTheRing) {
-// 	if (fellow.species === "Elf") console.log(`- ${fellow.name}`);
-// }
 
-console.log("\nWhat about humans?");
-for (let fellow of fellowshipOfTheRing) {
-	if (fellow.species === "Human") console.log(`- ${fellow.name}`);
+// Beware that for-in loops iterates the object keys!
+for (let fellow in fellowshipOfTheRing) {
+	if (fellow.people === "Elf") console.log(`- ${fellow.name}`);
 }
-// for (let { name, species } of fellowshipOfTheRing) {
-// 	if (species === "Human") console.log(`- ${name}`);
+
+console.log("\nWhat about humans then?");
+for (let fellow of fellowshipOfTheRing) {
+	if (fellow.people === "Human") console.log(`- ${fellow.name}`);
+}
+// Alternativly:
+// for (let { name, people } of fellowshipOfTheRing) {
+// 	if (people === "Human") console.log(`- ${name}`);
 // }
 
 console.log("\nWhat were the name of the hobbits again?");
 console.log("The hobbits are:");
 fellowshipOfTheRing
-	.filter(({ species }) => species === "Hobbit")
+	.filter(({ people }) => people === "Hobbit")
 	.forEach(({ name }) => console.log(`- ${name}`));
 
 console.log("\nSo every good fellowship has a wizard, do they have one too?");
 const isThereAWizardAmongThem = fellowshipOfTheRing.some(
-	({ species }) => species === "Wizard"
+	({ people }) => people === "Wizard"
 );
 console.log(
-	"\n",
 	isThereAWizardAmongThem ? "- Yes, they do!" : "No, not a single one!"
 );
 
-console.log("OK, so how many different species are there in the fellowship?");
-const uniqueSpecies = [
-	...new Set(fellowshipOfTheRing.map(({ species }) => species)),
+console.log(
+	"OK, so how many different kinds people are there in the fellowship?"
+);
+const peopleOfDifferentKind = [
+	...new Set(fellowshipOfTheRing.map(({ people }) => people)),
 ].length;
-console.log(`There are ${uniqueSpecies} species in the fellowship`);
+console.log(
+	`There are ${peopleOfDifferentKind} different kinds of people in the fellowship`
+);
 
 console.log("\nAnd they are?");
 console.log(
-	[...new Set(fellowshipOfTheRing.map(({ species }) => species))].join(", ")
+	[...new Set(fellowshipOfTheRing.map(({ people }) => people))].join(", ")
 );
 
 console.log("\nOK, so how many humans are there?");
 const numberOfHumans = fellowshipOfTheRing.reduce(
-	(prev, current) => (current.species === "Human" ? prev + 1 : prev),
+	(prev, current) => (current.people === "Human" ? prev + 1 : prev),
 	0
 );
 console.log(`There are ${numberOfHumans} in the fellowship`);

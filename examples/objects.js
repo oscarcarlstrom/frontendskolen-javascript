@@ -15,6 +15,10 @@ function jsonEqual(x, y) {
 
 console.log(jsonEqual(a, b)); // true
 
+const c = { prop1: 1, prop2: 2 };
+const d = { prop2: 2, prop1: 1 };
+console.log(jsonEqual(c, d)); // false - the order of attributes matters when using JSON.stringify!
+
 //Assumes only primitives and objects as values
 function deepEquals(x, y) {
 	if (typeof x === "object" && typeof y === "object") {
@@ -30,6 +34,7 @@ function deepEquals(x, y) {
 }
 
 console.log(deepEquals(a, b)); // true
+console.log(deepEquals(c, d)); // true
 
 const complexA = {
 	prop1: 1,
