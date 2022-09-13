@@ -7,7 +7,11 @@ function doSomethingAsync() {
 }
 
 const resolved = doSomethingAsync();
-// const resolved = await doSomethingAsync(); // SyntaxError: await is only valid in async functions and the top level bodies of modules - top level await will be great 🙌
+
+// SyntaxError: await is only valid in async functions and
+// the top level bodies of modules - top level await will be great 🙌
+// const resolved = await doSomethingAsync();
+
 console.log(resolved); // Promise { <pending> }
 
 async function runAsync() {
@@ -25,10 +29,10 @@ function getVeryUnreliablePromise() {
 	});
 }
 
-// (async function runUnreliableAsync() {
-// 	const unreliableStuff = await getVeryUnreliablePromise(); // UnhandledPromiseRejection
-// 	console.log(unreliableStuff);
-// })();
+(async function runUnreliableAsync() {
+	const unreliableStuff = await getVeryUnreliablePromise(); // UnhandledPromiseRejection
+	console.log(unreliableStuff);
+})();
 
 (async function runUnreliableAsyncWithTryCatch() {
 	try {
