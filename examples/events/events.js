@@ -30,7 +30,7 @@ form.addEventListener("submit", (event) => {
 	label.appendChild(document.createElement("span"));
 	label.classList.add("toggle-switch");
 	label.addEventListener("click", (e) => {
-		// Beware the event "bubbling"! -> note that it has to be a click event, "change" won't bubble!
+		// Beware the event "bubbling"! -> note that it has to be a click event, "change" won't bubble in this case!
 		// Also notice that without stopPropagation() we get the alert from the newRow event listener twice, due to the event bubbling
 		e.stopPropagation();
 
