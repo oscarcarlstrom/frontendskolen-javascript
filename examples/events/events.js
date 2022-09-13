@@ -10,10 +10,11 @@ const tableBody = document.querySelector("#table-body");
 
 const form = document.querySelector("#form");
 form.addEventListener("submit", (event) => {
-	event.preventDefault();
+	event.preventDefault(); // Note: prevents page reload on form submit
 
 	const newRow = document.createElement("tr");
 	tableBody.appendChild(newRow);
+	// Note this event listener
 	newRow.addEventListener("click", () => {
 		alert("You just clicked a user you maniac!");
 	});
@@ -29,9 +30,10 @@ form.addEventListener("submit", (event) => {
 	label.appendChild(document.createElement("span"));
 	label.classList.add("toggle-switch");
 	label.addEventListener("click", (e) => {
-		// Beware the event "bubbling"! -> note that it has to be a click event, change won't work!
-		// Also notice that with out this we get the alert from the newRow event listener twice, due to the event bubbling
+		// Beware the event "bubbling"! -> note that it has to be a click event, "change" won't bubble!
+		// Also notice that without stopPropagation() we get the alert from the newRow event listener twice, due to the event bubbling
 		e.stopPropagation();
+
 		console.log(
 			`${nameInput.value} was ${e.target.checked ? "enabled" : "disabled"}`
 		);
