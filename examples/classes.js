@@ -32,7 +32,7 @@ const animal = new Animal("Fido");
 console.log(animal.name); // Fido
 console.log(animal.getAnimalName()); // Fido
 
-// // console.log(animal.#privateName); // SyntaxError: Private field '#privateName' must be declared in an enclosing class
+// console.log(animal.#privateName); // SyntaxError: Private field '#privateName' must be declared in an enclosing class
 console.log(animal.privateName); // undefined
 console.log(animal.getAnimalPrivateName()); // Kose-Fido
 
